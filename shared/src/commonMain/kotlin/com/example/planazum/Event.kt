@@ -1,7 +1,7 @@
 package com.example.planazum
 
 
-class Event (
+data class Event (
   var  user: String,
   var name : String,
   var  address: String,

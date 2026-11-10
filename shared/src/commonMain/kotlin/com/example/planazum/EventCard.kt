@@ -30,7 +30,7 @@ import planazum.shared.generated.resources.Res
 import planazum.shared.generated.resources.placeholder
 
 @Composable
-fun GenerateEventCard(event: Event) {
+fun GenerateEventCard(event: Event, color: Color) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -42,7 +42,7 @@ fun GenerateEventCard(event: Event) {
                 .width(374.dp)
                 .height(190.dp)
                 .background(
-                    color = Color(0xFFE58E94),
+                    color = color,
                     shape = RoundedCornerShape(size = 9.dp)
                 )
                 .padding(5.dp)
@@ -135,7 +135,7 @@ fun GenerateEventCard(event: Event) {
                                 Box(
                                     modifier = Modifier
                                         .background(
-                                            color = Color(0xFFE58E94),
+                                            color = color,
                                         )
                                         .padding(horizontal = 6.dp, vertical = 2.dp)
                                 ) {
@@ -177,5 +177,5 @@ fun Preview(){
             address = "La direccion",
             availableTickets = 11,
             price = 10000000.0,
-        ))
+        ), color = Color(0xFFE58E94))
 }
