@@ -27,36 +27,33 @@ import org.jetbrains.compose.resources.painterResource
 import planazum.shared.generated.resources.Res
 import planazum.shared.generated.resources.placeholder
 
-
 @Composable
-fun GenerateCard(eventName:String) {
+fun GenerateEventCard(eventName:String) {
 
     Box(
         modifier = Modifier
-
             .width(374.dp)
             .height(190.dp)
-            .background
-                (
+            .background(
                 color = Color(0xFFE58E94),
                 shape = RoundedCornerShape(size = 9.dp)
             ),
         contentAlignment = Alignment.BottomCenter
     ) {
+
         (Text(
             text = eventName,
             modifier = Modifier
                 .align(Alignment.TopStart)
                 .offset(x = 10.dp, y = 10.dp),
             color = Color.White
+            )
         )
-                )
 
-        Spacer(modifier = Modifier.height(15.dp))
+        Spacer(modifier = Modifier.height(16.dp))
 
         Box(
-            modifier =
-                Modifier
+            modifier = Modifier
                     .fillMaxWidth()
                     .padding(4.dp)
                     .height(150.dp)
@@ -69,44 +66,50 @@ fun GenerateCard(eventName:String) {
                             bottomEnd = 9.dp
                         )
                     )
-
-        ) {
+            ) {
 
             Column {
-                Row(modifier = Modifier.padding(4.dp)) {
+                Row() {
                     Image(
                         contentDescription = "imagen",
                         painter = painterResource(Res.drawable.placeholder),
-                        modifier = Modifier.height(146.dp)
-                            .width(103.dp),
+                        modifier = Modifier
+                            .height(146.dp)
+                            .width(103.dp)
+                            .padding(8.dp),
                         contentScale = ContentScale.FillBounds
                     )
-                    Column(modifier = Modifier.padding(4.dp)) {
+
+                    Column(modifier = Modifier.padding(8.dp)) {
                         Text(text = "@Ayuntamiento Castellón")
-                        Text(text = "Lunes 30 Abril")
+                        Spacer(modifier = Modifier.height(4.dp))
                         Text(text = "Palacio de la musica")
+                        Spacer(modifier = Modifier.height(4.dp))
+                        Text(text = "Lunes 30 Abril")
+                        Spacer(modifier = Modifier.height(4.dp))
                         Text(text = "08:00PM")
+                        Spacer(modifier = Modifier.height(4.dp))
+
                         Column(
                             modifier = Modifier.fillMaxWidth(),
                             horizontalAlignment = Alignment.CenterHorizontally,
-                            verticalArrangement = Arrangement.spacedBy(2.dp),
+                            verticalArrangement = Arrangement.Top,
 
                         ) {
-                            Spacer(modifier = Modifier.height(20.dp))
+
+                            Spacer(modifier = Modifier.height(8.dp))
+
                             Box (modifier = Modifier.background(color = Color(0xFFEBBA36))
-                                .offset(x= 5.dp, y = (-5).dp)){
+                                .offset(x= 5.dp, y = (-5).dp))
+                            {
                                 Box(
                                     modifier = Modifier
-                                        .background(
-                                            color = Color(0xFFE58E94)
-                                        )
+                                        .background(color = Color(0xFFE58E94))
                                         .padding(horizontal = 10.dp, vertical = 4.dp)
-
                                 ) {
                                     Text(
-                                        text = "ENTRADA 10€",
+                                        text = "ENTRADA 10000€",
                                         color = Color.White,
-
                                     )
                                 }
                             }
@@ -114,7 +117,7 @@ fun GenerateCard(eventName:String) {
                             Text(
                                 text = "¡quedan 4 entradas!",
                                 color = Color.Black,
-                                modifier = Modifier.offset(x= 60.dp)
+                                modifier = Modifier.offset(x= 56.dp)
                             )
                         }
                     }
@@ -124,10 +127,9 @@ fun GenerateCard(eventName:String) {
     }
 }
 
-
 @Preview(showBackground = true)
 @Composable
 fun Preview(){
-    GenerateCard(
+    GenerateEventCard(
         eventName = "Festival musical")
 }
