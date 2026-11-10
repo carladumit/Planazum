@@ -25,12 +25,16 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import kotlinx.datetime.LocalDateTime
 import org.jetbrains.compose.resources.painterResource
 import planazum.shared.generated.resources.Res
 import planazum.shared.generated.resources.placeholder
 
 @Composable
 fun GenerateEventCard(event: Event, color: Color) {
+    val time = "${event.dateTime.hour.toString().padStart(2, '0')}:${event.dateTime.minute.toString().padStart(2, '0')}"
+    val date = event.dateTime.toSpanishString()
+
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -114,11 +118,11 @@ fun GenerateEventCard(event: Event, color: Color) {
                                     color = Color.Gray
                                 )
                                 Text(
-                                    text = "Lunes 30 Abril",
+                                    text = time,
                                     style = MaterialTheme.typography.bodySmall
                                 )
                                 Text(
-                                    text = "08:00PM",
+                                    text = date,
                                     style = MaterialTheme.typography.bodySmall
                                 )
                             }
@@ -140,7 +144,7 @@ fun GenerateEventCard(event: Event, color: Color) {
                                         .padding(horizontal = 6.dp, vertical = 2.dp)
                                 ) {
                                     Text(
-                                        text = "ENTRADA ${event.price.toInt()}€",
+                                        text = if (event.price == 0.0) "ENTRADA GRATUITA" else "ENTRADA ${event.price.toInt()}€",
                                         color = Color.White,
                                         style = MaterialTheme.typography.labelMedium
                                     )
@@ -165,6 +169,16 @@ fun GenerateEventCard(event: Event, color: Color) {
 }
 
 
+private val spanishMonths = listOf(
+    "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+    "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
+)
+
+fun LocalDateTime.toSpanishString(): String {
+    val mesNombre = spanishMonths[this.month.ordinal]
+    return "${this.day} de $mesNombre"
+}
+
 
 
 @Preview(showBackground = true)
@@ -176,6 +190,7 @@ fun Preview(){
             name = "Festival música",
             address = "La direccion",
             availableTickets = 11,
-            price = 10000000.0,
+            price = 0.0,
+            dateTime = LocalDateTime(2026, 5, 28, 13, 0)
         ), color = Color(0xFFE58E94))
 }
