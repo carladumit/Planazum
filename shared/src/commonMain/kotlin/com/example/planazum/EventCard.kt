@@ -176,7 +176,7 @@ private val spanishMonths = listOf(
 
 fun LocalDateTime.toSpanishString(): String {
     val mesNombre = spanishMonths[this.month.ordinal]
-    return "${this.day} de $mesNombre"
+    return "${this.dayOfMonth} de $mesNombre"
 }
 
 
