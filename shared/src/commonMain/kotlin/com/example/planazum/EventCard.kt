@@ -31,9 +31,9 @@ import planazum.shared.generated.resources.Res
 import planazum.shared.generated.resources.placeholder
 
 @Composable
-fun GenerateEventCard(event: Event, color: Color) {
-    val time = "${event.dateTime.hour.toString().padStart(2, '0')}:${event.dateTime.minute.toString().padStart(2, '0')}"
-    val date = event.dateTime.toSpanishString()
+fun GenerateEventCard(eventUi: EventUi,) {
+    val time = "${eventUi.event.dateTime.hour.toString().padStart(2, '0')}:${eventUi.event.dateTime.minute.toString().padStart(2, '0')}"
+    val date = eventUi.event.dateTime.toSpanishString()
 
     Box(
         modifier = Modifier
@@ -46,7 +46,7 @@ fun GenerateEventCard(event: Event, color: Color) {
                 .width(374.dp)
                 .height(190.dp)
                 .background(
-                    color = color,
+                    color = eventUi.color,
                     shape = RoundedCornerShape(size = 9.dp)
                 )
                 .padding(5.dp)
@@ -56,7 +56,7 @@ fun GenerateEventCard(event: Event, color: Color) {
                 verticalArrangement = Arrangement.SpaceBetween
             ) {
                 Text(
-                    text = event.name,
+                    text = eventUi.event.name,
                     color = Color.White,
                     style = MaterialTheme.typography.titleMedium
                 )
@@ -109,11 +109,11 @@ fun GenerateEventCard(event: Event, color: Color) {
 
                             Column(verticalArrangement = Arrangement.spacedBy(1.dp)) {
                                 Text(
-                                    text = "@${event.user}",
+                                    text = "@${eventUi.event.user}",
                                     style = MaterialTheme.typography.bodyMedium
                                 )
                                 Text(
-                                    text = event.address,
+                                    text = eventUi.event.address,
                                     style = MaterialTheme.typography.bodySmall,
                                     color = Color.Gray
                                 )
@@ -139,12 +139,12 @@ fun GenerateEventCard(event: Event, color: Color) {
                                 Box(
                                     modifier = Modifier
                                         .background(
-                                            color = color,
+                                            color = eventUi.color,
                                         )
                                         .padding(horizontal = 6.dp, vertical = 2.dp)
                                 ) {
                                     Text(
-                                        text = if (event.price == 0.0) "ENTRADA GRATUITA" else "ENTRADA ${event.price.toInt()}€",
+                                        text = if (eventUi.event.price == 0.0) "ENTRADA GRATUITA" else "ENTRADA ${eventUi.event.price.toInt()}€",
                                         color = Color.White,
                                         style = MaterialTheme.typography.labelMedium
                                     )
@@ -154,7 +154,7 @@ fun GenerateEventCard(event: Event, color: Color) {
                                 Spacer(modifier = Modifier.height(2.dp))
 
                                 Text(
-                                    text = "¡quedan ${event.availableTickets} entradas!",
+                                    text = "¡quedan ${eventUi.event.availableTickets} entradas!",
                                     style = MaterialTheme.typography.labelSmall,
                                     color = Color.Black,
                                     modifier = Modifier.align(Alignment.End)
@@ -185,12 +185,12 @@ fun LocalDateTime.toSpanishString(): String {
 @Composable
 fun Preview(){
     GenerateEventCard(
-        Event(
+        EventUi(Event(
             user = "AyuntamientoCastellon",
             name = "Festival música",
             address = "La direccion",
             availableTickets = 11,
             price = 0.0,
-            dateTime = LocalDateTime(2026, 5, 28, 13, 0)
-        ), color = Color(0xFFE58E94))
+            dateTime = LocalDateTime(2026, 5, 28, 13, 0)),
+         color = Color(0xFFE58E94)))
 }
