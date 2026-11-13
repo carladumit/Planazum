@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -31,6 +30,7 @@ import kotlinx.datetime.LocalDateTime
 import org.jetbrains.compose.resources.painterResource
 import planazum.shared.generated.resources.Res
 import planazum.shared.generated.resources.placeholder
+import com.example.planazum.theme.PlanazumYellow
 
 @Composable
 fun GenerateEventCard(eventUi: EventUi,) {
@@ -135,22 +135,16 @@ fun GenerateEventCard(eventUi: EventUi,) {
                                 modifier = Modifier.fillMaxWidth(),
                                 horizontalAlignment = Alignment.CenterHorizontally
                             ) {
-                                Box (modifier = Modifier.background(color = Color(0xFFEBBA36))
-                                .offset(x= 3.dp, y = (-3).dp))
-                            {
-                                Box(
-                                    modifier = Modifier
-                                        .background(
-                                            color = eventUi.color,
-                                        )
-                                        .padding(horizontal = 6.dp, vertical = 2.dp)
-                                ) {
-                                    Text(
-                                        text = if (eventUi.event.price == 0.0) "ENTRADA GRATUITA" else "ENTRADA ${eventUi.event.price.toInt()}€",
+
+                                ShadowBox(color = eventUi.color,
+                                    shadowColor = PlanazumYellow,
+                                    offset = 3.dp,
+                                    ){
+                                    Text(text = if (eventUi.event.price == 0.0) "ENTRADA GRATUITA" else "ENTRADA ${eventUi.event.price.toInt()}€",
                                         color = Color.White,
-                                        style = MaterialTheme.typography.labelMedium
-                                    )
-                                }
+                                        style = MaterialTheme.typography.labelMedium,
+                                        modifier = Modifier.padding(horizontal = 6.dp, vertical = 1.dp))
+
                             }
 
                                 Spacer(modifier = Modifier.height(2.dp))
