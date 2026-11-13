@@ -1,4 +1,4 @@
-package com.example.planazum
+package com.example.planazum.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -13,9 +13,10 @@ import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import kotlinx.datetime.Month
+import com.example.planazum.util.Screen
 import org.jetbrains.compose.resources.painterResource
 import planazum.shared.generated.resources.Res
 import planazum.shared.generated.resources.*
@@ -27,11 +28,11 @@ fun NavBar(navController: NavHostController? = null){
         modifier = Modifier.fillMaxWidth()
             .height(60.dp)
             .padding(horizontal = 30.dp),
-        containerColor = Color.White,
+        containerColor = Color(0xFFFAF7F2),
 
         actions={
             Row(modifier = Modifier.fillMaxWidth()
-                .background(color = Color.White),
+                .background(color = Color(0xFFFAF7F2)),
 
                 horizontalArrangement = Arrangement.SpaceBetween){
             IconButton(onClick = {
@@ -73,20 +74,10 @@ fun NavBar(navController: NavHostController? = null){
 }
 
 
-fun Month.toSpanishName(): String = when (this) {
-    Month.JANUARY -> "Enero"
-    Month.FEBRUARY -> "Febrero"
-    Month.MARCH -> "Marzo"
-    Month.APRIL -> "Abril"
-    Month.MAY -> "Mayo"
-    Month.JUNE -> "Junio"
-    Month.JULY -> "Julio"
-    Month.AUGUST -> "Agosto"
-    Month.SEPTEMBER -> "Septiembre"
-    Month.OCTOBER -> "Octubre"
-    Month.NOVEMBER -> "Noviembre"
-    Month.DECEMBER -> "Diciembre"
+
+@Preview
+@Composable
+fun NavBarPreview(){
+    NavBar()
 }
-
-
 

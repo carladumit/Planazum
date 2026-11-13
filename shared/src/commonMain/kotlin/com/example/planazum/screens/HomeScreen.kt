@@ -1,8 +1,9 @@
-package com.example.planazum
+package com.example.planazum.screens
 
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -35,7 +36,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import com.example.planazum.Sample.Sample
+import com.example.planazum.components.GenerateEventCard
+import com.example.planazum.components.NavBar
+import com.example.planazum.sample.Sample
+import com.example.planazum.mapToUi
 import org.jetbrains.compose.resources.painterResource
 import planazum.shared.generated.resources.Res
 import planazum.shared.generated.resources.filterIcon
@@ -53,7 +57,8 @@ fun HomeScreen(navController: NavHostController? =null) {
 
     Column(
         modifier = Modifier.fillMaxSize()
-            .padding(horizontal = 20.dp),
+            .padding(horizontal = 20.dp)
+            .background(color = Color(0xFFFAF7F2)),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Spacer(modifier = Modifier.height(40.dp))
@@ -84,7 +89,7 @@ fun HomeScreen(navController: NavHostController? =null) {
 
         }
 
-            NavBar(navController)
+        NavBar(navController)
 
 
     }

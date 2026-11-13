@@ -1,4 +1,4 @@
-package com.example.planazum
+package com.example.planazum.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -20,7 +20,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.planazum.Sample.Sample
+import com.example.planazum.sample.Sample
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.daysUntil
@@ -28,6 +28,11 @@ import kotlinx.datetime.toLocalDateTime
 import kotlin.time.Clock
 import androidx.compose.foundation.lazy.items
 import androidx.navigation.NavHostController
+import com.example.planazum.EventUi
+import com.example.planazum.components.GenerateEventCard
+import com.example.planazum.components.NavBar
+import com.example.planazum.mapToUi
+import com.example.planazum.util.toSpanishName
 
 @Composable
 fun MyEventsScreen(navController: NavHostController? = null){
