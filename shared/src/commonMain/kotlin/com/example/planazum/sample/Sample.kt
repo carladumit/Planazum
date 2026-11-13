@@ -1,4 +1,4 @@
-package com.example.planazum.Sample
+package com.example.planazum.sample
 
 import androidx.compose.ui.graphics.Color
 import com.example.planazum.Event
