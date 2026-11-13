@@ -83,7 +83,9 @@ fun HomeScreen(navController: NavHostController? =null) {
 
 
         }
-        NavBar(navController!!)
+
+            NavBar(navController)
+
 
     }
 

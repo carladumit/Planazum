@@ -33,7 +33,7 @@ import androidx.navigation.NavHostController
 fun MyEventsScreen(navController: NavHostController? = null){
 
     val events = Sample.eventList.mapToUi(Sample.colorList)
-    Column {
+    Column (modifier = Modifier.fillMaxSize()){
 
         val groupedEvents: Map<String, List<EventUi>> = remember(events) {
             events.sortedBy { it.event.dateTime }
@@ -68,7 +68,7 @@ fun MyEventsScreen(navController: NavHostController? = null){
         }
 
         Column(verticalArrangement = Arrangement.Bottom){
-            NavBar(navController!!)
+            NavBar(navController)
         }
     }
 

@@ -21,7 +21,7 @@ import planazum.shared.generated.resources.Res
 import planazum.shared.generated.resources.*
 
 @Composable
-fun NavBar(navController: NavHostController){
+fun NavBar(navController: NavHostController? = null){
 
     BottomAppBar(
         modifier = Modifier.fillMaxWidth()
@@ -35,7 +35,7 @@ fun NavBar(navController: NavHostController){
 
                 horizontalArrangement = Arrangement.SpaceBetween){
             IconButton(onClick = {
-                navController.navigate(Screen.Home.route){
+                navController?.navigate(Screen.Home.route){
                     popUpTo(Screen.Home.route){inclusive = true}
                 }
             }){
@@ -45,7 +45,7 @@ fun NavBar(navController: NavHostController){
                 }
             }
             IconButton (onClick = {
-                navController.navigate(Screen.MyEvents.route){
+                navController?.navigate(Screen.MyEvents.route){
                     popUpTo(Screen.MyEvents.route){inclusive = true}}
             }){
                 Box(){
