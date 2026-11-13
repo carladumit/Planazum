@@ -15,12 +15,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import kotlinx.datetime.Month
 import org.jetbrains.compose.resources.painterResource
 import planazum.shared.generated.resources.Res
 import planazum.shared.generated.resources.*
 
 @Composable
 fun NavBar(){
+
     BottomAppBar(
         modifier = Modifier.fillMaxWidth()
             .height(60.dp)
@@ -62,6 +64,23 @@ fun NavBar(){
     )
 
 }
+
+
+fun Month.toSpanishName(): String = when (this) {
+    Month.JANUARY -> "Enero"
+    Month.FEBRUARY -> "Febrero"
+    Month.MARCH -> "Marzo"
+    Month.APRIL -> "Abril"
+    Month.MAY -> "Mayo"
+    Month.JUNE -> "Junio"
+    Month.JULY -> "Julio"
+    Month.AUGUST -> "Agosto"
+    Month.SEPTEMBER -> "Septiembre"
+    Month.OCTOBER -> "Octubre"
+    Month.NOVEMBER -> "Noviembre"
+    Month.DECEMBER -> "Diciembre"
+}
+
 
 
 

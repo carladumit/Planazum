@@ -176,7 +176,7 @@ private val spanishMonths = listOf(
 
 fun LocalDateTime.toSpanishString(): String {
     val mesNombre = spanishMonths[this.month.ordinal]
-    return "${this.dayOfMonth} de $mesNombre"
+    return "${this.day} de $mesNombre"
 }
 
 
@@ -186,6 +186,7 @@ fun LocalDateTime.toSpanishString(): String {
 fun Preview(){
     GenerateEventCard(
         EventUi(Event(
+            id = 1,
             user = "AyuntamientoCastellon",
             name = "Festival música",
             address = "La direccion",

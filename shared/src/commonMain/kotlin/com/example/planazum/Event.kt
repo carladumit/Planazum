@@ -5,6 +5,7 @@ import kotlinx.datetime.LocalDateTime
 
 
 data class Event (
+  var id: Long,
   var  user: String,
   var name : String,
   var  address: String,

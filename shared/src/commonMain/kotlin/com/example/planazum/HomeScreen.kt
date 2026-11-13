@@ -35,7 +35,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.planazum.Sample.Sample
-
 import org.jetbrains.compose.resources.painterResource
 import planazum.shared.generated.resources.Res
 import planazum.shared.generated.resources.filterIcon
@@ -83,9 +82,8 @@ fun HomeScreen() {
 
 
         }
-        Column(verticalArrangement = Arrangement.Bottom){
-            NavBar()
-        }
+        NavBar()
+
     }
 
 }
