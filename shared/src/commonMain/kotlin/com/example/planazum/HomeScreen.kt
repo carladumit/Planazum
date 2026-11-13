@@ -34,6 +34,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import com.example.planazum.Sample.Sample
 import org.jetbrains.compose.resources.painterResource
 import planazum.shared.generated.resources.Res
@@ -43,7 +44,7 @@ import planazum.shared.generated.resources.glass
 
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(navController: NavHostController? =null) {
     val eventList = Sample.eventList
 
     val uiEventList = eventList.mapToUi(Sample.colorList)
@@ -82,7 +83,7 @@ fun HomeScreen() {
 
 
         }
-        NavBar()
+        NavBar(navController!!)
 
     }
 
@@ -133,6 +134,5 @@ fun SearchBar(value: String,
 @Preview(showBackground = true)
 @Composable
 fun HomeScreenPreview(){
-
     HomeScreen()
 }

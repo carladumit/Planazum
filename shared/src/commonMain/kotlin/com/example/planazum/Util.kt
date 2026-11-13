@@ -13,15 +13,15 @@ import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import kotlinx.datetime.Month
 import org.jetbrains.compose.resources.painterResource
 import planazum.shared.generated.resources.Res
 import planazum.shared.generated.resources.*
 
 @Composable
-fun NavBar(){
+fun NavBar(navController: NavHostController){
 
     BottomAppBar(
         modifier = Modifier.fillMaxWidth()
@@ -34,13 +34,20 @@ fun NavBar(){
                 .background(color = Color.White),
 
                 horizontalArrangement = Arrangement.SpaceBetween){
-            IconButton(onClick = {}){
+            IconButton(onClick = {
+                navController.navigate(Screen.Home.route){
+                    popUpTo(Screen.Home.route){inclusive = true}
+                }
+            }){
                 Box(){
                     Image(painter = painterResource(Res.drawable.home),
                         contentDescription = "HomeButton")
                 }
             }
-            IconButton (onClick = {}){
+            IconButton (onClick = {
+                navController.navigate(Screen.MyEvents.route){
+                    popUpTo(Screen.MyEvents.route){inclusive = true}}
+            }){
                 Box(){
                     Image(painter = painterResource(Res.drawable.list),
                         contentDescription = "ViewEvents")
@@ -83,9 +90,3 @@ fun Month.toSpanishName(): String = when (this) {
 
 
 
-
-@Preview(showBackground = true)
-@Composable
-fun NavBarPreview(){
-    NavBar()
-}

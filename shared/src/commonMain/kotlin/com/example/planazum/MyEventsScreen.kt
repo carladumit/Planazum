@@ -27,9 +27,12 @@ import kotlinx.datetime.daysUntil
 import kotlinx.datetime.toLocalDateTime
 import kotlin.time.Clock
 import androidx.compose.foundation.lazy.items
+import androidx.navigation.NavHostController
 
 @Composable
-fun MyEventsScreen(events: List<EventUi>){
+fun MyEventsScreen(navController: NavHostController? = null){
+
+    val events = Sample.eventList.mapToUi(Sample.colorList)
     Column {
 
         val groupedEvents: Map<String, List<EventUi>> = remember(events) {
@@ -65,7 +68,7 @@ fun MyEventsScreen(events: List<EventUi>){
         }
 
         Column(verticalArrangement = Arrangement.Bottom){
-            NavBar()
+            NavBar(navController!!)
         }
     }
 
@@ -109,6 +112,6 @@ fun SectionBanner(title:String){
 @Composable
 fun MyEventsScreenPreview(){
 
-    MyEventsScreen(Sample.eventList.mapToUi(Sample.colorList))
+    MyEventsScreen()
 }
 
