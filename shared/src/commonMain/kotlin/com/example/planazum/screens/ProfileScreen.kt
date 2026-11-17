@@ -31,24 +31,27 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import com.example.planazum.Event
+import com.example.planazum.User
+import com.example.planazum.components.GenerateEventCard
 import com.example.planazum.components.NavBar
-import com.example.planazum.components.PreviewEventCard
 import com.example.planazum.components.ShadowBox
+import com.example.planazum.mapToUi
+import com.example.planazum.sample.Sample
 import com.example.planazum.theme.PlanazumExtras
 import com.example.planazum.theme.PlanazumTheme
 
 @Composable
 fun ProfileScreen(
     navController: NavHostController? = null,
-    username: String,
-    firstName: String,
-    lastName: String,
-    events: List<EventDraft>,
     onEditProfile: () -> Unit = {},
     onLogoutClick: () -> Unit = {},
     onAvatarClick: () -> Unit = {}
     //onEventClick: (EventDraft) -> Unit = {}
 ) {
+    val events: List<Event> = Sample.eventList
+    val uiEvents = events.mapToUi(Sample.colorList)
+    val user: User = Sample.userList[0]
     val pink = MaterialTheme.colorScheme.primary
     val yellow = MaterialTheme.colorScheme.secondary
 
@@ -85,7 +88,7 @@ fun ProfileScreen(
                 Column (modifier = Modifier.fillMaxSize().padding(12.dp)) {
                     Row(modifier = Modifier.padding(vertical = 6.dp)) {
                         Avatar(
-                            initials = "${firstName.firstOrNull() ?: ""}${lastName.firstOrNull() ?: ""}"
+                            initials = "${user.name.firstOrNull() ?: ""}${user.lastName.firstOrNull() ?: ""}"
                                 .uppercase(),
                             onClick = onAvatarClick
                         )
@@ -93,14 +96,14 @@ fun ProfileScreen(
                             modifier = Modifier.padding(start = 14.dp)
                         ) {
                             Text(
-                                text = "$firstName $lastName",
+                                text = "${user.name} ${user.lastName}",
                                 fontSize = 20.sp,
                                 color = MaterialTheme.colorScheme.onBackground,
                                 textAlign = TextAlign.Center
                             )
                             Spacer(Modifier.height(2.dp))
                             Text(
-                                text = "@$username",
+                                text = "@${user.username}",
                                 fontSize = 16.sp,
                                 color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.6f)
                             )
@@ -163,17 +166,8 @@ fun ProfileScreen(
                     )
                 }
             } else {
-                items(events) { event ->
-                    PreviewEventCard(
-                        name = event.name,
-                        date = event.date,
-                        time = event.time,
-                        place = event.place,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .clip(RoundedCornerShape(8.dp))
-                            //.clickable { onEventClick(event) }
-                    )
+                items(uiEvents) { event ->
+                    GenerateEventCard(event)
                 }
             }
         }
@@ -203,42 +197,10 @@ private fun Avatar(
     }
 }
 
-private val sampleEvents = listOf(
-    EventDraft(
-        name = "Fiesta de Halloween",
-        date = "31/10/2026",
-        time = "19:00 – 23:00",
-        address = "Calle Pintor Camarón",
-        place = "Casa de Petunia",
-        description = "Se anima asistencia con pelo de bruja!!"
-    ),
-    EventDraft(
-        name = "Picnic en el parque",
-        date = "14/11/2026",
-        time = "12:00 – 16:00",
-        address = "Parque del Oeste",
-        place = "Parque del Oeste",
-        description = "Trae algo para compartir y una manta."
-    ),
-    EventDraft(
-        name = "Noche de juegos de mesa",
-        date = "05/12/2026",
-        time = "20:00 – 00:00",
-        address = "Calle Herrero 12",
-        place = "Pub Parchís",
-        description = "Parchís y dominó"
-    )
-)
-
 @Preview(showBackground = true)
 @Composable
 fun ProfileScreenPreview() {
     PlanazumTheme(darkTheme = false) {
-        ProfileScreen(
-            username = "paugalo13",
-            firstName = "Paula",
-            lastName = "García López",
-            events = sampleEvents //emptyList()
-        )
+        ProfileScreen()
     }
 }
