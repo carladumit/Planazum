@@ -23,8 +23,8 @@ object Sample {
             endTime = LocalDateTime(2026, 11, 15, 23, 30),
             description = "Disfruta de la mejor música en directo en el corazón de la ciudad.",
             assistants = listOf(
-                User(1, "Ana García", "ana@email.com", "password123"),
-                User(2, "Carlos López", "carlos@email.com", "password123")
+                User(1, "Ana", "García", "ana@email.com", "password123"),
+                User(2, "Carlos", "López", "carlos@email.com", "password123")
             )
         ),
         Event(
@@ -52,7 +52,7 @@ object Sample {
             endTime = LocalDateTime(2026, 12, 2, 18, 0),
             description = "Torneo abierto de tenis individual masculino y femenino.",
             assistants = listOf(
-                User(3, "Pedro Martínez", "pedro@email.com", "password123")
+                User(3, "Pedro", "Martínez", "pedro@email.com", "password123")
             )
         ),
         Event(
@@ -67,9 +67,9 @@ object Sample {
             endTime = LocalDateTime(2026, 12, 11, 2, 0),
             description = "Noche de música indie rock con las mejores bandas emergentes locales.",
             assistants = listOf(
-                User(1, "Ana García", "ana@email.com", "password123"),
-                User(4, "Lucía Pérez", "lucia@email.com", "password123"),
-                User(5, "Marc Vila", "marc@email.com", "password123")
+                User(1, "Ana", "García", "ana@email.com", "password123"),
+                User(4, "Lucía", "Pérez", "lucia@email.com", "password123"),
+                User(5, "Marc", "Vila", "marc@email.com", "password123")
             )
         ),
         Event(
@@ -97,7 +97,7 @@ object Sample {
             endTime = LocalDateTime(2027, 1, 20, 21, 0),
             description = "Representación de una de las grandes obras maestras del teatro clásico.",
             assistants = listOf(
-                User(2, "Carlos López", "carlos@email.com", "password123")
+                User(2, "Carlos", "López", "carlos@email.com", "password123")
             )
         ),
         Event(
@@ -114,6 +114,7 @@ object Sample {
             assistants = emptyList()
         )
     )
+
 
     val colorList: List<Color> = listOf(PlanazumPink, PlanazumBlue, PlanazumGreen, PlanazumSand)
 
