@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
@@ -25,59 +24,78 @@ import planazum.shared.generated.resources.*
 fun NavBar(navController: NavHostController? = null){
 
     BottomAppBar(
-        modifier = Modifier.fillMaxWidth()
-            .height(60.dp)
-            .padding(horizontal = 30.dp),
+        modifier = Modifier.fillMaxWidth().height(60.dp),
         containerColor = Color(0xFFFAF7F2),
 
-        actions={
-            Row(modifier = Modifier.fillMaxWidth()
-                .background(color = Color(0xFFFAF7F2)),
-
-                horizontalArrangement = Arrangement.SpaceBetween){
-            IconButton(onClick = {
-                navController?.navigate(Screen.Home.route){
-                    popUpTo(Screen.Home.route){inclusive = true}
+        actions = {
+            Row(
+                modifier = Modifier.fillMaxWidth()
+                    .background(color = Color(0xFFFAF7F2)),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                IconButton(
+                    onClick = {
+                        navController?.navigate(Screen.Home.route) {
+                            popUpTo(Screen.Home.route) { inclusive = true }
+                        }
+                    }
+                ) {
+                    Box {
+                        Image(
+                            painter = painterResource(Res.drawable.home),
+                            contentDescription = "HomeButton"
+                        )
+                    }
                 }
-            }){
-                Box(){
-                    Image(painter = painterResource(Res.drawable.home),
-                        contentDescription = "HomeButton")
+                IconButton(
+                    onClick = {
+                        navController?.navigate(Screen.MyEvents.route) {
+                            popUpTo(Screen.MyEvents.route) { inclusive = true }
+                        }
+                    }
+                ) {
+                    Box {
+                        Image(
+                            painter = painterResource(Res.drawable.list),
+                            contentDescription = "ViewEvents"
+                        )
+                    }
                 }
-            }
-            IconButton (onClick = {
-                navController?.navigate(Screen.MyEvents.route){
-                    popUpTo(Screen.MyEvents.route){inclusive = true}}
-            }){
-                Box(){
-                    Image(painter = painterResource(Res.drawable.list),
-                        contentDescription = "ViewEvents")
-                }
-            }
-            IconButton (onClick = {}){
-                Box(){
-                    Image(painter = painterResource(Res.drawable.cross),
-                        contentDescription = "ViewEvents")
-                }
-            }
-            IconButton (onClick = {}){
-                Box(){
-                    Image(painter = painterResource(Res.drawable.profile),
-                        contentDescription = "ViewEvents")
+                IconButton(
+                    onClick = {
+                        navController?.navigate(Screen.CreateEvent.route) {
+                            popUpTo(Screen.CreateEvent.route) { inclusive = true }
+                        }
+                    }
+                ) {
+                    Box {
+                        Image(
+                            painter = painterResource(Res.drawable.cross),
+                            contentDescription = "ViewEvents"
+                        )
+                    }
+                    IconButton(
+                        onClick = {
+                            navController?.navigate(Screen.Profile.route) {
+                                popUpTo(Screen.Profile.route) { inclusive = true }
+                            }
+                        }
+                    ) {
+                        Box {
+                            Image(
+                                painter = painterResource(Res.drawable.profile),
+                                contentDescription = "ViewEvents"
+                            )
+                        }
+                    }
                 }
             }
         }
-        }
-
     )
-
 }
-
-
 
 @Preview
 @Composable
 fun NavBarPreview(){
     NavBar()
 }
-

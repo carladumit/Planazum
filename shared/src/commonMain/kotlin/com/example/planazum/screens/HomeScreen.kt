@@ -40,6 +40,8 @@ import com.example.planazum.components.GenerateEventCard
 import com.example.planazum.components.NavBar
 import com.example.planazum.sample.Sample
 import com.example.planazum.mapToUi
+import com.example.planazum.theme.PlanazumPink
+import com.example.planazum.theme.PlanazumYellow
 import org.jetbrains.compose.resources.painterResource
 import planazum.shared.generated.resources.Res
 import planazum.shared.generated.resources.filterIcon
@@ -106,7 +108,7 @@ fun FilterButton(filter: String){
             containerColor = Color.Transparent,
             contentColor = Color.Black
         ),
-        border = BorderStroke(1.5.dp, Color(0xFFE58E94)),
+        border = BorderStroke(1.5.dp, PlanazumPink),
         contentPadding = PaddingValues(horizontal = 10.dp, vertical = 3.dp)){
 
         Text(text = filter,
@@ -130,9 +132,9 @@ fun SearchBar(value: String,
         colors = OutlinedTextFieldDefaults.colors(
             focusedContainerColor = Color.White,
             unfocusedContainerColor = Color.White,
-            focusedBorderColor = Color(0xFFE7B2AD),
-            unfocusedBorderColor = Color(0xFFE7B2AD),
-            cursorColor = Color(0xFFE7B2AD)
+            focusedBorderColor = PlanazumYellow,
+            unfocusedBorderColor = PlanazumYellow,
+            cursorColor = PlanazumYellow
         )
 
     )
