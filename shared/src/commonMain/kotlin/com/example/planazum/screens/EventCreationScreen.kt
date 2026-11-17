@@ -35,7 +35,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-import com.example.planazum.components.GenerateEventCard
 import com.example.planazum.components.InputField
 import com.example.planazum.components.NavBar
 import com.example.planazum.components.ShadowBox
@@ -54,7 +53,7 @@ data class EventDraft(
 @Composable
 fun EventCreationScreen(
     navController: NavHostController? = null,
-    onCreateClick: (EventDraft) -> Unit = {}
+    onCreateClick: (EventDraft) -> Unit = {},
 ) {
     var name by remember { mutableStateOf("") }
     var date by remember { mutableStateOf("") }

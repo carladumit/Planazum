@@ -31,6 +31,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.example.planazum.components.InputField
 import com.example.planazum.components.ShadowBox
 import com.example.planazum.theme.OnAccent
@@ -44,7 +45,8 @@ enum class AccountType(val label: String) {
 @Composable
 fun RegisterScreen(
     onRegisterClick: (type: AccountType, email: String, password: String) -> Unit = { _, _, _ -> },
-    onLoginClick: () -> Unit = {}
+    onLoginClick: () -> Unit = {},
+    navController: NavHostController? = null
 ) {
     var accountType by remember { mutableStateOf(AccountType.Personal) }
     var email by remember { mutableStateOf("") }

@@ -34,6 +34,8 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import com.example.planazum.components.InputField
 import com.example.planazum.components.ShadowBox
 import com.example.planazum.theme.OnAccent
@@ -45,7 +47,8 @@ import planazum.shared.generated.resources.planazum_logo
 @Composable
 fun LoginScreen(
     onLoginClick: (email: String, password: String) -> Unit = { _, _ -> },
-    onSignUpClick: () -> Unit = {}
+    onSignUpClick: () -> Unit = {},
+    navController: NavHostController? = null
 ) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
