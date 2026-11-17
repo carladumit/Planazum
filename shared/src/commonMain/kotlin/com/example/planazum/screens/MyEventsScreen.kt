@@ -1,13 +1,17 @@
 package com.example.planazum.screens
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -27,37 +31,50 @@ import kotlinx.datetime.daysUntil
 import kotlinx.datetime.toLocalDateTime
 import kotlin.time.Clock
 import androidx.compose.foundation.lazy.items
+import androidx.compose.ui.layout.ContentScale
 import androidx.navigation.NavHostController
 import com.example.planazum.EventUi
 import com.example.planazum.components.GenerateEventCard
 import com.example.planazum.components.NavBar
 import com.example.planazum.mapToUi
 import com.example.planazum.util.toSpanishName
+import org.jetbrains.compose.resources.painterResource
+import planazum.shared.generated.resources.Res
+import planazum.shared.generated.resources.planazum_logo
 
 @Composable
 fun MyEventsScreen(navController: NavHostController? = null){
 
     val events = Sample.eventList.mapToUi(Sample.colorList)
-    Column (modifier = Modifier.fillMaxSize()){
+    Column (modifier = Modifier.fillMaxSize()
+        .padding(top = 20.dp)){
 
         val groupedEvents: Map<String, List<EventUi>> = remember(events) {
             events.sortedBy { it.event.dateTime }
                 .groupBy { event -> getSectionTitle(event.event.dateTime) }
+        }
+        Row (modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically){
+            Text(
+                text = "Tus ",
+                style = MaterialTheme.typography.titleMedium,
+                textAlign = TextAlign.Center
+            )
+
+            Box(modifier = Modifier.height(20.dp).width(100.dp)){
+                Image(painter = painterResource(Res.drawable.planazum_logo),
+                    contentDescription = "Logo App",
+                    modifier = Modifier
+                        .fillMaxSize(),
+                    contentScale = ContentScale.FillBounds)
+                }
         }
         LazyColumn(
             modifier = Modifier.fillMaxSize().padding(horizontal = 16.dp).weight(1f),
             verticalArrangement = Arrangement.spacedBy(12.dp),
             contentPadding = PaddingValues(vertical = 16.dp)
         ) {
-            item {
-                Text(
-                    text = "Tus Planazums",
-                    style = MaterialTheme.typography.titleMedium,
-                    modifier = Modifier.fillMaxWidth(),
-                    textAlign = TextAlign.Center
-                )
-            }
-
             groupedEvents.forEach { (sectionTitle, sectionEvents) ->
                 item(key = sectionTitle) {
                     SectionBanner(title = sectionTitle)
