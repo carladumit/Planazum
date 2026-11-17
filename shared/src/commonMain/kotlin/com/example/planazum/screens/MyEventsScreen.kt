@@ -50,8 +50,8 @@ fun MyEventsScreen(navController: NavHostController? = null){
         .padding(top = 20.dp)){
 
         val groupedEvents: Map<String, List<EventUi>> = remember(events) {
-            events.sortedBy { it.event.dateTime }
-                .groupBy { event -> getSectionTitle(event.event.dateTime) }
+            events.sortedBy { it.event.startTime }
+                .groupBy { event -> getSectionTitle(event.event.startTime) }
         }
         Row (modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.Center,

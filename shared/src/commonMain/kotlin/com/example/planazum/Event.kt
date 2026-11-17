@@ -8,11 +8,14 @@ data class Event (
   var id: Long,
   var  user: String,
   var name : String,
+  var place: String,
   var  address: String,
   var  availableTickets: Int,
   var  price: Double,
-  var dateTime: LocalDateTime
-
+  var startTime: LocalDateTime,
+  var endTime: LocalDateTime,
+  var description: String,
+  var assistants: List<User>
     )
 
 fun List<Event>.mapToUi(colorList: List<Color>): List<EventUi> {

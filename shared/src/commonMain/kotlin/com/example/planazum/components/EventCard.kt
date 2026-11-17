@@ -24,8 +24,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.planazum.Event
 import com.example.planazum.EventUi
+import com.example.planazum.sample.Sample
 import kotlinx.datetime.LocalDateTime
 import org.jetbrains.compose.resources.painterResource
 import planazum.shared.generated.resources.Res
@@ -34,8 +34,8 @@ import com.example.planazum.theme.PlanazumYellow
 
 @Composable
 fun GenerateEventCard(eventUi: EventUi,) {
-    val time = "${eventUi.event.dateTime.hour.toString().padStart(2, '0')}:${eventUi.event.dateTime.minute.toString().padStart(2, '0')}"
-    val date = eventUi.event.dateTime.toSpanishString()
+    val time = "${eventUi.event.startTime.hour.toString().padStart(2, '0')}:${eventUi.event.startTime.minute.toString().padStart(2, '0')}"
+    val date = eventUi.event.startTime.toSpanishString()
 
     Box(
         modifier = Modifier
@@ -181,16 +181,7 @@ fun LocalDateTime.toSpanishString(): String {
 @Composable
 fun Preview(){
     GenerateEventCard(
-        EventUi(
-            Event(
-                id = 1,
-                user = "AyuntamientoCastellon",
-                name = "Festival música",
-                address = "La direccion",
-                availableTickets = 11,
-                price = 0.0,
-                dateTime = LocalDateTime(2026, 5, 28, 13, 0)
-            ),
+        EventUi(Sample.eventList[1],
             color = Color(0xFFE58E94)
         )
     )
