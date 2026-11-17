@@ -30,47 +30,63 @@ fun NavBar(navController: NavHostController? = null){
         actions = {
             Row(
                 modifier = Modifier.fillMaxWidth()
-                .background(color = Color(0xFFFAF7F2)),
+                    .background(color = Color(0xFFFAF7F2)),
                 horizontalArrangement = Arrangement.SpaceBetween
-            ){
+            ) {
                 IconButton(
                     onClick = {
-                        navController?.navigate(Screen.Home.route){
-                            popUpTo(Screen.Home.route){ inclusive = true }
+                        navController?.navigate(Screen.Home.route) {
+                            popUpTo(Screen.Home.route) { inclusive = true }
                         }
                     }
-                ){
+                ) {
                     Box {
-                        Image(painter = painterResource(Res.drawable.home),
-                            contentDescription = "HomeButton")
+                        Image(
+                            painter = painterResource(Res.drawable.home),
+                            contentDescription = "HomeButton"
+                        )
                     }
                 }
                 IconButton(
                     onClick = {
                         navController?.navigate(Screen.MyEvents.route) {
-                            popUpTo(Screen.MyEvents.route){ inclusive = true }
+                            popUpTo(Screen.MyEvents.route) { inclusive = true }
                         }
                     }
-                ){
+                ) {
                     Box {
-                        Image(painter = painterResource(Res.drawable.list),
-                            contentDescription = "ViewEvents")
+                        Image(
+                            painter = painterResource(Res.drawable.list),
+                            contentDescription = "ViewEvents"
+                        )
                     }
                 }
                 IconButton(
-                    onClick = { }
-                ){
-                    Box {
-                        Image(painter = painterResource(Res.drawable.cross),
-                            contentDescription = "ViewEvents")
+                    onClick = {
+                        navController?.navigate(Screen.CreateEvent.route) {
+                            popUpTo(Screen.CreateEvent.route) { inclusive = true }
+                        }
                     }
-                }
-                IconButton(
-                    onClick = { }
-                ){
+                ) {
                     Box {
-                        Image(painter = painterResource(Res.drawable.profile),
-                            contentDescription = "ViewEvents")
+                        Image(
+                            painter = painterResource(Res.drawable.cross),
+                            contentDescription = "ViewEvents"
+                        )
+                    }
+                    IconButton(
+                        onClick = {
+                            navController?.navigate(Screen.Profile.route) {
+                                popUpTo(Screen.Profile.route) { inclusive = true }
+                            }
+                        }
+                    ) {
+                        Box {
+                            Image(
+                                painter = painterResource(Res.drawable.profile),
+                                contentDescription = "ViewEvents"
+                            )
+                        }
                     }
                 }
             }
