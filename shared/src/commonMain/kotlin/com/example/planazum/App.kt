@@ -7,6 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.planazum.screens.HomeScreen
+import com.example.planazum.screens.LoginScreen
 import com.example.planazum.screens.MyEventsScreen
 import com.example.planazum.util.Screen
 
@@ -29,6 +30,14 @@ fun App() {
 
         composable(route = Screen.MyEvents.route){
             MyEventsScreen(navController = navController)
+        }
+
+        composable(route = Screen.Login.route){
+            LoginScreen(navController = navController)
+        }
+
+        composable(route = Screen.Register.route){
+
         }
 
 

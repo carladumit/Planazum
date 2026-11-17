@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -25,12 +26,12 @@ fun NavBar(navController: NavHostController? = null){
 
     BottomAppBar(
         modifier = Modifier.fillMaxWidth().height(60.dp),
-        containerColor = Color(0xFFFAF7F2),
+        containerColor = MaterialTheme.colorScheme.background,
 
         actions = {
             Row(
                 modifier = Modifier.fillMaxWidth()
-                    .background(color = Color(0xFFFAF7F2)),
+                    .background(color = MaterialTheme.colorScheme.background),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 IconButton(
@@ -74,6 +75,7 @@ fun NavBar(navController: NavHostController? = null){
                             contentDescription = "ViewEvents"
                         )
                     }
+                }
                     IconButton(
                         onClick = {
                             navController?.navigate(Screen.Profile.route) {
@@ -89,7 +91,7 @@ fun NavBar(navController: NavHostController? = null){
                         }
                     }
                 }
-            }
+
         }
     )
 }
