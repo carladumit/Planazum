@@ -3,6 +3,10 @@ package com.example.planazum.sample
 import androidx.compose.ui.graphics.Color
 import com.example.planazum.Event
 import com.example.planazum.User
+import com.example.planazum.theme.PlanazumBlue
+import com.example.planazum.theme.PlanazumGreen
+import com.example.planazum.theme.PlanazumPink
+import com.example.planazum.theme.PlanazumSand
 import kotlinx.datetime.LocalDateTime
 
 object Sample {
@@ -111,6 +115,6 @@ object Sample {
         )
     )
 
-    val colorList: List<Color> = listOf(Color(0xFFE58E94), Color(0xFF96C1DD),Color(0xFFA7BE2A), Color(0xFFD7B995))
+    val colorList: List<Color> = listOf(PlanazumPink, PlanazumBlue, PlanazumGreen, PlanazumSand)
 
 }

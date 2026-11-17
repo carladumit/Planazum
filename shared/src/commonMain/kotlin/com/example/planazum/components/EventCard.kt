@@ -26,6 +26,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.planazum.EventUi
 import com.example.planazum.sample.Sample
+import com.example.planazum.theme.PlanazumPink
 import kotlinx.datetime.LocalDateTime
 import org.jetbrains.compose.resources.painterResource
 import planazum.shared.generated.resources.Res
@@ -182,7 +183,7 @@ fun LocalDateTime.toSpanishString(): String {
 fun Preview(){
     GenerateEventCard(
         EventUi(Sample.eventList[1],
-            color = Color(0xFFE58E94)
+            color = PlanazumPink
         )
     )
 }
