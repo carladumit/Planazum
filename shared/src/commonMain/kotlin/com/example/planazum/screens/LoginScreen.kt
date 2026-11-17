@@ -1,6 +1,7 @@
 package com.example.planazum.screens
 
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -13,6 +14,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -26,6 +28,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
@@ -35,6 +38,9 @@ import com.example.planazum.components.InputField
 import com.example.planazum.components.ShadowBox
 import com.example.planazum.theme.OnAccent
 import com.example.planazum.theme.PlanazumTheme
+import org.jetbrains.compose.resources.painterResource
+import planazum.shared.generated.resources.Res
+import planazum.shared.generated.resources.planazum_logo
 
 @Composable
 fun LoginScreen(
@@ -65,14 +71,22 @@ fun LoginScreen(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            ShadowBox(color = pink, shadowColor = yellow) {
-                Text(
-                    text = "Planazum!",
-                    fontSize = 28.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = Color.White,
-                    modifier = Modifier.padding(horizontal = 12.dp, vertical = 10.dp)
-                )
+            ShadowBox(color = Color.White, shadowColor = Color.White) {
+//                Text(
+//                    text = "Planazum!",
+//                    fontSize = 28.sp,
+//                    fontWeight = FontWeight.Bold,
+//                    color = Color.White,
+//                    modifier = Modifier.padding(horizontal = 12.dp, vertical = 10.dp)
+//                )
+
+                Box(modifier = Modifier.height(60.dp).width(300.dp)){
+                    Image(painter = painterResource(Res.drawable.planazum_logo),
+                        contentDescription = "Logo App",
+                        modifier = Modifier
+                            .fillMaxSize(),
+                        contentScale = ContentScale.FillBounds)
+                }
             }
             PinIcon()
         }
