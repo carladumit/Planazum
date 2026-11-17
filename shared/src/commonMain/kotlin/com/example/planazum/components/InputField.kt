@@ -5,6 +5,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -18,11 +19,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.planazum.theme.OnAccent
@@ -37,9 +40,11 @@ fun InputField(
     keyboardType: KeyboardType = KeyboardType.Text,
     password: Boolean = false,
     passwordVisible: Boolean = false,
-    onTogglePassword: (() -> Unit)? = null
+    onTogglePassword: (() -> Unit)? = null,
+    accent: Color = MaterialTheme.colorScheme.primary,
+    multiline: Boolean = false,
+    height: Dp = if (multiline) 130.dp else 60.dp
 ) {
-    val accent = MaterialTheme.colorScheme.primary
     val textColor = MaterialTheme.colorScheme.onSurface
     val shape = RoundedCornerShape(6.dp)
 
@@ -57,13 +62,20 @@ fun InputField(
                 .background(MaterialTheme.colorScheme.surface)
                 .border(1.dp, accent, shape)
                 .padding(horizontal = 14.dp),
-            contentAlignment = Alignment.CenterStart
-        ) {
+            contentAlignment = if (multiline) Alignment.TopStart else Alignment.CenterStart        ) {
             Row(
-                modifier = Modifier.fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically
+                modifier = if (multiline) {
+                    Modifier.fillMaxSize().padding(vertical = 12.dp)
+                } else {
+                    Modifier.fillMaxWidth()
+                },
+                verticalAlignment = if (multiline) Alignment.Top else Alignment.CenterVertically
             ) {
-                Box(modifier = Modifier.weight(1f)) {
+                Box(modifier = if (multiline) {
+                    Modifier.weight(1f).fillMaxHeight()
+                } else {
+                    Modifier.weight(1f)
+                }) {
                     if (value.isEmpty()) {
                         Text(
                             text = placeholder,
@@ -74,7 +86,7 @@ fun InputField(
                     BasicTextField(
                         value = value,
                         onValueChange = onValueChange,
-                        singleLine = true,
+                        singleLine = !multiline,
                         textStyle = TextStyle(fontSize = 18.sp, color = textColor),
                         cursorBrush = SolidColor(accent),
                         keyboardOptions = KeyboardOptions(keyboardType = keyboardType),
@@ -83,7 +95,7 @@ fun InputField(
                         } else {
                             VisualTransformation.None
                         },
-                        modifier = Modifier.fillMaxWidth()
+                        modifier =  if (multiline) Modifier.fillMaxSize() else Modifier.fillMaxWidth()
                     )
                 }
 
@@ -100,7 +112,6 @@ fun InputField(
             }
         }
 
-        // Etiqueta resaltada en rosa, superpuesta al borde
         Text(
             text = label,
             fontSize = 16.sp,
