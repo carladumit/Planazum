@@ -37,6 +37,7 @@ import com.example.planazum.EventUi
 import com.example.planazum.components.GenerateEventCard
 import com.example.planazum.components.NavBar
 import com.example.planazum.mapToUi
+import com.example.planazum.theme.PlanazumYellow
 import com.example.planazum.util.toSpanishName
 import org.jetbrains.compose.resources.painterResource
 import planazum.shared.generated.resources.Res
@@ -124,7 +125,7 @@ fun SectionBanner(title:String){
             fontWeight = FontWeight.Bold,
             color = Color.Black,
             modifier = Modifier
-                .background(Color(0xFFE5B822))
+                .background(PlanazumYellow)
                 .padding(horizontal = 48.dp, vertical = 4.dp)
         )
     }
