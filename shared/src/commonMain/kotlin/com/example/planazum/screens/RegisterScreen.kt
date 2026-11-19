@@ -36,6 +36,7 @@ import com.example.planazum.components.InputField
 import com.example.planazum.components.ShadowBox
 import com.example.planazum.theme.OnAccent
 import com.example.planazum.theme.PlanazumTheme
+import com.example.planazum.util.Screen
 
 enum class AccountType(val label: String) {
     Personal("Personal"),
@@ -44,8 +45,6 @@ enum class AccountType(val label: String) {
 
 @Composable
 fun RegisterScreen(
-    onRegisterClick: (type: AccountType, email: String, password: String) -> Unit = { _, _, _ -> },
-    onLoginClick: () -> Unit = {},
     navController: NavHostController? = null
 ) {
     var accountType by remember { mutableStateOf(AccountType.Personal) }
@@ -169,7 +168,13 @@ fun RegisterScreen(
                     message = "Completa todos los campos"
                 } else {
                     message = ""
-                    onRegisterClick(accountType, email, password)
+                    if (checkUserData()){
+                        navController?.navigate(Screen.Profile.route) {
+                            popUpTo(Screen.Profile.route) { inclusive = true }
+                        }
+
+                    }
+
                 }
             }
         ) {
@@ -198,7 +203,11 @@ fun RegisterScreen(
             ShadowBox(
                 color = pink,
                 shadowColor = yellow,
-                modifier = Modifier.clickable(onClick = onLoginClick)
+                modifier = Modifier.clickable(onClick = {
+                    navController?.navigate(Screen.Login.route) {
+                        popUpTo(Screen.Login.route) { inclusive = true }
+                    }
+                })
             ) {
                 Text(
                     text = "Inicia sesión",
@@ -256,6 +265,10 @@ private fun AccountTypeToggle(
             }
         }
     }
+}
+
+fun checkUserData():Boolean{
+    return true
 }
 
 @Preview(showBackground = true)

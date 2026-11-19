@@ -34,20 +34,20 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import com.example.planazum.components.InputField
 import com.example.planazum.components.ShadowBox
 import com.example.planazum.theme.OnAccent
 import com.example.planazum.theme.PlanazumTheme
+import com.example.planazum.util.Screen
 import org.jetbrains.compose.resources.painterResource
 import planazum.shared.generated.resources.Res
 import planazum.shared.generated.resources.planazum_logo
 
 @Composable
 fun LoginScreen(
-    onLoginClick: (email: String, password: String) -> Unit = { _, _ -> },
-    onSignUpClick: () -> Unit = {},
+    //OnLoginClick: (email: String, password: String) -> Unit = { _, _ -> },
+    //onSignUpClick: () -> Unit = {},
     navController: NavHostController? = null
 ) {
     var email by remember { mutableStateOf("") }
@@ -137,7 +137,11 @@ fun LoginScreen(
                     message = "Introduce tu correo y contraseña"
                 } else {
                     message = ""
-                    onLoginClick(email, password)
+                    if (CredentialsValidation(email, password)){
+                        navController?.navigate(Screen.Profile.route) {
+                            popUpTo(Screen.Profile.route) { inclusive = true }
+                        }
+                    }
                 }
             }
         ) {
@@ -167,7 +171,10 @@ fun LoginScreen(
             ShadowBox(
                 color = pink,
                 shadowColor = yellow,
-                modifier = Modifier.clickable(onClick = onSignUpClick)
+                modifier = Modifier.clickable(onClick =  {
+                    navController?.navigate(Screen.Register.route) {
+                    popUpTo(Screen.Register.route) { inclusive = true }}
+                })
             ) {
                 Text(
                     text = "Regístrate",
@@ -205,6 +212,11 @@ private fun PinIcon() {
             drawCircle(yellow, radius = w * 0.15f, center = head)
         }
     }
+}
+
+
+fun CredentialsValidation(email:String, password:String):Boolean{
+    return true
 }
 
 @Preview(showBackground = true)
