@@ -10,6 +10,41 @@ import com.example.planazum.theme.PlanazumSand
 import kotlinx.datetime.LocalDateTime
 
 object Sample {
+
+    val userList: List<User> = listOf(
+        User(
+            id = 1,
+            username = "anagarcia",
+            name = "Ana",
+            lastName = "García",
+            email = "ana@email.com",
+            password = "password123"
+        ),
+        User(
+            id = 2,
+            username = "carloslopez",
+            name = "Carlos",
+            lastName = "López",
+            email = "carlos@email.com",
+            password = "password123"
+        ),
+        User(
+            id = 3,
+            username = "pedromartinez",
+            name = "Pedro",
+            lastName = "Martínez",
+            email = "pedro@email.com",
+            password = "password123"
+        ),
+        User(
+            id = 4,
+            username = "luciaperez",
+            name = "Lucía",
+            lastName = "Pérez",
+            email = "lucia@email.com",
+            password = "password123"
+        )
+    )
     val eventList: List<Event> = listOf(
         Event(
             id = 1,
@@ -22,10 +57,7 @@ object Sample {
             startTime = LocalDateTime(2026, 11, 15, 20, 0),
             endTime = LocalDateTime(2026, 11, 15, 23, 30),
             description = "Disfruta de la mejor música en directo en el corazón de la ciudad.",
-            assistants = listOf(
-                User(1, "Ana García", "ana@email.com", "password123"),
-                User(2, "Carlos López", "carlos@email.com", "password123")
-            )
+            assistants = listOf(userList[0], userList[1])
         ),
         Event(
             id = 2,
@@ -52,7 +84,7 @@ object Sample {
             endTime = LocalDateTime(2026, 12, 2, 18, 0),
             description = "Torneo abierto de tenis individual masculino y femenino.",
             assistants = listOf(
-                User(3, "Pedro Martínez", "pedro@email.com", "password123")
+                userList[2]
             )
         ),
         Event(
@@ -66,11 +98,7 @@ object Sample {
             startTime = LocalDateTime(2026, 12, 10, 22, 0),
             endTime = LocalDateTime(2026, 12, 11, 2, 0),
             description = "Noche de música indie rock con las mejores bandas emergentes locales.",
-            assistants = listOf(
-                User(1, "Ana García", "ana@email.com", "password123"),
-                User(4, "Lucía Pérez", "lucia@email.com", "password123"),
-                User(5, "Marc Vila", "marc@email.com", "password123")
-            )
+            assistants = listOf(userList[1],userList[3],userList[4])
         ),
         Event(
             id = 5,
@@ -96,9 +124,7 @@ object Sample {
             startTime = LocalDateTime(2027, 1, 20, 19, 0),
             endTime = LocalDateTime(2027, 1, 20, 21, 0),
             description = "Representación de una de las grandes obras maestras del teatro clásico.",
-            assistants = listOf(
-                User(2, "Carlos López", "carlos@email.com", "password123")
-            )
+            assistants = listOf(userList[2])
         ),
         Event(
             id = 7,
@@ -114,7 +140,6 @@ object Sample {
             assistants = emptyList()
         )
     )
-
     val colorList: List<Color> = listOf(PlanazumPink, PlanazumBlue, PlanazumGreen, PlanazumSand)
 
 }
