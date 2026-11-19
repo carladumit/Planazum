@@ -26,9 +26,8 @@ fun App() {
     ){
         composable(route = Screen.Home.route){
             HomeScreen(
-                navController = navController
-            )
-                }
+                navController = navController)
+        }
 
         composable(route = Screen.MyEvents.route){
             MyEventsScreen(navController = navController)
@@ -48,9 +47,6 @@ fun App() {
         composable (route = Screen.CreateEvent.route){
             EventCreationScreen (navController= navController )
         }
-
-
-
 
     }
 
