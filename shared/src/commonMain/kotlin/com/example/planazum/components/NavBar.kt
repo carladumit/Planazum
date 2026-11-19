@@ -77,8 +77,8 @@ fun NavBar(navController: NavHostController? = null){
                 }
                     IconButton(
                         onClick = {
-                            navController?.navigate(Screen.Profile.route) {
-                                popUpTo(Screen.Profile.route) { inclusive = true }
+                            navController?.navigate(Screen.Login.route) {
+                                popUpTo(Screen.Login.route) { inclusive = true }
                             }
                         }
                     ) {
